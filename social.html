@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media - dOS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4c6ef5;
+            --secondary-color: #12b886;
+            --dark-color: #212529;
+            --light-color: #f8f9fa;
+            --accent-color: #fa5252;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: var(--light-color);
+            animation: fadeIn 0.8s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            margin-bottom: 2rem;
+        }
+        
+        .back-button {
+            display: inline-block;
+            margin-top: 1rem;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .back-button:hover {
+            opacity: 0.8;
+        }
+        
+        section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.2rem;
+        }
+        
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .social-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+            animation: slideUp 0.8s ease;
+        }
+        
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .social-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .social-card:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        .social-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .card-header {
+            padding: 2rem;
+            text-align: center;
+            color: white;
+        }
+        
+        .twitter {
+            background: linear-gradient(135deg, #1DA1F2, #0e76a8);
+        }
+        
+        .instagram {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+        }
+        
+        .facebook {
+            background: linear-gradient(135deg, #3b5998, #1877f2);
+        }
+        
+        .social-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .card-content {
+            padding: 2rem;
+        }
+        
+        .social-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .stat-item {
+            flex: 1;
+        }
+        
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .follow-button {
+            display: block;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .follow-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 10px rgba(0,0,0,0.15);
+        }
+        
+        .feed-section {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 5rem 0;
+        }
+        
+        .feed-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .post {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            animation: fadeIn 1s ease;
+            animation-fill-mode: both;
+        }
+        
+        .post:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .post:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        .post-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .post-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-right: 1rem;
+        }
+        
+        .post-info h4 {
+            margin-bottom: 0.2rem;
+        }
+        
+        .post-date {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .post-content {
+            margin-bottom: 1.5rem;
+        }
+        
+        .post-actions {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .action-button {
+            display: flex;
+            align-items: center;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .action-button:hover {
+            color: var(--primary-color);
+        }
+        
+        .action-icon {
+            margin-right: 0.5rem;
+        }
+        
+        .community-section {
+            padding: 5rem 0;
+        }
+        
+        .community-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .community-card {
+            text-align: center;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .community-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .community-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+        }
+        
+        .footer-content {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .social-link {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .social-link:hover {
+            color: var(--primary-color);
+        }
+        
+        @media (max-width: 768px) {
+            .social-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="logo">dOS</h1>
+            <p class="tagline">Seguici sui social media per rimanere aggiornato</p>
+            <a href="index.html" class="back-button">← Torna alla home</a>
+        </div>
+    </header>
+    
+    <section class="social-section">
+        <div class="container">
+            <h2 class="section-title">I nostri canali social</h2>
+            
+            <div class="social-grid">
+                <div class="social-card">
+                    <div class="card-header twitter">
+                        <div class="social-icon">🐦</div>
+                        <h3>Twitter</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="social-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">12.5K</div>
+                                <div class="stat-label">Follower</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">820</div>
+                                <div class="stat-label">Post</div>
+                            </div>
+                        </div>
+                        <p style="margin-bottom: 1.5rem;">Seguici su Twitter per aggiornamenti rapidi, novità e discussioni sulla community.</p>
+                        <a href="#" class="follow-button">Segui @dOS_OS</a>
+                    </div>
+                </div>
+                
+                <div class="social-card">
+                    <div class="card-header instagram">
+                        <div class="social-icon">📷</div>
+                        <h3>Instagram</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="social-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">8.3K</div>
+                                <div class="stat-label">Follower</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">350</div>
+                                <div class="stat-label">Post</div>
+                            </div>
+                        </div>
+                        <p style="margin-bottom: 1.5rem;">Guarda le immagini dell'interfaccia, le anteprime e gli sguardi dietro le quinte dello sviluppo.</p>
+                        <a href="#" class="follow-button">Segui @dOS_official</a>
+                    </div>
+                </div>
+                
+                <div class="social-card">
+                    <div class="card-header facebook">
+                        <div class="social-icon">👍</div>
+                        <h3>Facebook</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="social-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">15K</div>
+                                <div class="stat-label">Like</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">450</div>
+                                <div class="stat-label">Post</div>
+                            </div>
+                        </div>
+                        <p style="margin-bottom: 1.5rem;">Unisciti alla nostra pagina Facebook per articoli dettagliati e condivisioni dalla community.</p>
+                        <a href="#" class="follow-button">Segui dOS Official</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="feed-section">
+        <div class="container">
+            <h2 class="section-title">Ultimi aggiornamenti</h2>
+            
+            <div class="feed-container">
+                <div class="post">
+                    <div class="post-header">
+                        <div class="post-avatar">🐦</div>
+                        <div class="post-info">
+                            <h4>dOS Official</h4>
+                            <div class="post-date">2 ore fa</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <p>Siamo entusiasti di annunciare che la fase di sviluppo core è completa al 75%! Presto inizieremo a invitare i primi beta tester. Sei pronto a provare la nuova esperienza dOS? #dOSBeta #ComingSoon</p>
+                    </div>
+                    <div class="post-actions">
+                        <a href="#" class="action-button"><span class="action-icon">❤️</span> 245</a>
+                        <a href="#" class="action-button"><span class="action-icon">🔁</span> 78</a>
+                        <a href="#" class="action-button"><span class="action-icon">💬</span> 32</a>
+                    </div>
+                </div>
+                
+                <div class="post">
+                    <div class="post-header">
+                        <div class="post-avatar">📷</div>
+                        <div class="post-info">
+                            <h4>dOS Official</h4>
+                            <div class="post-date">2 giorni fa</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <p>Ecco un'anteprima della nuova interfaccia utente di dOS! Abbiamo lavorato duramente per creare un design intuitivo, moderno e personalizzabile. Cosa ne pensate? #dOSUI #ModernOS #UXDesign</p>
+                    </div>
+                    <div class="post-actions">
+                        <a href="#" class="action-button"><span class="action-icon">❤️</span> 512</a>
+                        <a href="#" class="action-button"><span class="action-icon">🔁</span> 124</a>
+                        <a href="#" class="action-button"><span class="action-icon">💬</span> 87</a>
+                    </div>
+                </div>
+                
+                <div class="post">
+                    <div class="post-header">
+                        <div class="post-avatar">👍</div>
+                        <div class="post-info">
+                            <h4>dOS Official</h4>
+                            <div class="post-date">1 settimana fa</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <p>Nuova partnership annunciata! Siamo felici di collaborare con tecHQ per migliorare la compatibilità delle applicazioni in dOS. Questo significa che potrai utilizzare ancora più software sul tuo nuovo sistema operativo preferito! #dOSPartnership #Compatibility</p>
+                    </div>
+                    <div class="post-actions">
+                        <a href="#" class="action-button"><span class="action-icon">❤️</span> 387</a>
+                        <a href="#" class="action-button"><span class="action-icon">🔁</span> 96</a>
+                        <a href="#" class="action-button"><span class="action-icon">💬</span> 54</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="community-section">
+        <div class="container">
+            <h2 class="section-title">Unisciti alla nostra community</h2>
+            
+            <p style="text-align: center; max-width: 800px; margin: 0 auto; margin-bottom: 2rem;">
+                dOS non è solo un sistema operativo, è una community di appassionati, sviluppatori e utenti che credono in un'esperienza informatica migliore. Unisciti a noi e fai parte di questa rivoluzione!
+            </p>
+            
+            <div class="community-grid">
+                <div class="community-card">
+                    <div class="community-icon">🌐</div>
+                    <h4>Forum dOS</h4>
+                    <p>Discuti con altri utenti, trova soluzioni e condividi idee sul nostro forum ufficiale.</p>
+                </div>
+                
+                <div class="community-card">
+                    <div class="community-icon">💻</div>
+                    <h4>GitHub</h4>
+                    <p>Contribuisci al codice, segnala bug e partecipa allo sviluppo open source di dOS.</p>
+                </div>
+                
+                <div class="community-card">
+                    <div class="community-icon">🎮</div>
+                    <h4>Discord</h4>
+                    <p>Chatta in tempo reale con la community e il team di sviluppo sul nostro server Discord.</p>
+                </div>
+                
+                <div class="community-card">
+                    <div class="community-icon">📝</div>
+                    <h4>Blog</h4>
+                    <p>Leggi articoli approfonditi sul nostro blog ufficiale con tutorial e aggiornamenti.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <h3>dOS - Il futuro è qui</h3>
+                <p>Sviluppato con ❤️ da Damiano Sensi</p>
+                <div class="social-links">
+                    <a href="social.html" class="social-link">📱</a>
+                    <a href="contatti.html" class="social-link">💬</a>
+                    <a href="email.html" class="social-link">📧</a>
+                </div>
+                <p>&copy; 2023 dOS. Tutti i diritti riservati.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 

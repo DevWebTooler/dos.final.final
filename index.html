@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dOS - Your New Favorite Operating System</title>
+    <link rel="icon" href="images/icon" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4c6ef5;
+            --secondary-color: #12b886;
+            --dark-color: #212529;
+            --light-color: #f8f9fa;
+            --accent-color: #fa5252;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: var(--light-color);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Effetto particelle in background */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            animation: float 15s infinite ease-in-out;
+        }
+        
+        .particle:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            left: 10%;
+            top: 40%;
+            animation-delay: 0s;
+        }
+        
+        .particle:nth-child(2) {
+            width: 40px;
+            height: 40px;
+            left: 30%;
+            top: 20%;
+            animation-delay: 2s;
+        }
+        
+        .particle:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            left: 50%;
+            top: 60%;
+            animation-delay: 4s;
+        }
+        
+        .particle:nth-child(4) {
+            width: 60px;
+            height: 60px;
+            left: 70%;
+            top: 30%;
+            animation-delay: 6s;
+        }
+        
+        .particle:nth-child(5) {
+            width: 50px;
+            height: 50px;
+            left: 85%;
+            top: 70%;
+            animation-delay: 8s;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.8;
+            }
+            50% {
+                transform: translateY(-60px) rotate(180deg);
+                opacity: 0.4;
+            }
+            100% {
+                transform: translateY(0) rotate(360deg);
+                opacity: 0.8;
+            }
+        }
+        
+        .logo {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+            animation: fadeInDown 1s ease;
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+            animation: fadeIn 1s ease 0.5s;
+            animation-fill-mode: both;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: white;
+            color: var(--primary-color);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 1;
+            animation: fadeIn 1s ease 1s;
+            animation-fill-mode: both;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 10px rgba(0,0,0,0.15);
+        }
+        
+        section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.2rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+            animation-timeline: view();
+            animation-range: entry 10% cover 30%;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 15px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            transition: transform 0.5s ease;
+        }
+        
+        .feature-card:hover .feature-icon {
+            transform: scale(1.2);
+        }
+        
+        .feature-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .platforms {
+            background-color: var(--dark-color);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .platform-list {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+        
+        .platform-item {
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards;
+            animation-timeline: view();
+            animation-range: entry 10% cover 40%;
+        }
+        
+        .platform-item:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .platform-item:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        .platform-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .platform-item:hover .platform-icon {
+            transform: scale(1.2);
+        }
+        
+        .roadmap-timeline {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline-item {
+            display: flex;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateX(-30px);
+            animation: slideInRight 0.8s ease forwards;
+            animation-timeline: view();
+            animation-range: entry 10% cover 40%;
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .timeline-dot {
+            width: 20px;
+            height: 20px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            margin-right: 1.5rem;
+            flex-shrink: 0;
+            position: relative;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        
+        .timeline-item:hover .timeline-dot {
+            transform: scale(1.5);
+            background-color: var(--secondary-color);
+        }
+        
+        .timeline-dot::after {
+            content: '';
+            position: absolute;
+            height: calc(100% + 2rem);
+            width: 2px;
+            background-color: #e9ecef;
+            top: 20px;
+            left: 9px;
+        }
+        
+        .timeline-item:last-child .timeline-dot::after {
+            display: none;
+        }
+        
+        .timeline-content h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+            position: relative;
+        }
+        
+        .footer-content {
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .social-link {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .social-link:hover {
+            color: var(--primary-color);
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        /* Pulsante Torna in cima */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            z-index: 99;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        @media (max-width: 768px) {
+            .platform-list {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            .feature-card {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Rotazione e animazioni 3D */
+        @keyframes rotate3D {
+            from {
+                transform: perspective(1000px) rotateY(0deg);
+            }
+            to {
+                transform: perspective(1000px) rotateY(360deg);
+            }
+        }
+
+        .rotate-on-hover:hover {
+            animation: rotate3D 1.5s ease;
+        }
+
+        /* Effetto movimento per testi */
+        .wave-text {
+            display: inline-block;
+            transition: transform 0.2s ease;
+        }
+
+        .wave-text:hover span {
+            display: inline-block;
+            animation: wave 0.3s ease infinite alternate;
+        }
+
+        .wave-text span:nth-child(2n) {
+            animation-delay: 0.1s;
+        }
+
+        .wave-text span:nth-child(3n) {
+            animation-delay: 0.2s;
+        }
+
+        @keyframes wave {
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(-5px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+        <div class="container">
+            <h1 class="logo rotate-on-hover">dOS</h1>
+            <p class="tagline">The new operating system that will revolutionize the way you use computers. Modern design, easy to use, and completely free.</p>
+            <a href="beta-signup.html" class="cta-button">Sign up for Beta</a>
+        </div>
+    </header>
+    
+    <section class="about">
+        <div class="container">
+            <h2 class="section-title wave-text"><span>W</span><span>h</span><span>a</span><span>t</span> <span>i</span><span>s</span> <span>d</span><span>O</span><span>S</span><span>?</span></h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto;">
+                dOS is a new operating system developed by Damiano Sensi, designed to be intuitive, fast, and modern. 
+                With an elegant user interface and optimized performance, dOS offers a smooth user experience on any device.
+                The system will be completely free and available for Windows, Linux, and MacOS, allowing you to 
+                transform your current computer into something completely new.
+            </p>
+        </div>
+    </section>
+    
+    <section class="features-section">
+        <div class="container">
+            <h2 class="section-title">Key Features</h2>
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3 class="feature-title">Optimized Performance</h3>
+                    <p>Lightweight system that improves your computer's speed by reducing resource consumption.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3 class="feature-title">Modern Design</h3>
+                    <p>Elegant and customizable user interface, with light and dark themes and fluid animations.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3 class="feature-title">Advanced Security</h3>
+                    <p>Built-in protection against malware and online threats to keep your data safe.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3 class="feature-title">Compatibility</h3>
+                    <p>Support for most Windows, Linux, and MacOS applications thanks to compatibility layers.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3 class="feature-title">Quick Start</h3>
+                    <p>Exceptionally fast boot and restart times thanks to system optimizations.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3 class="feature-title">Smart Search</h3>
+                    <p>Quickly find files, settings, and applications with a powerful built-in search engine.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="platforms">
+        <div class="container">
+            <h2 class="section-title">Available on</h2>
+            <div class="platform-list">
+                <div class="platform-item">
+                    <div class="platform-icon">🪟</div>
+                    <h3>Windows</h3>
+                </div>
+                <div class="platform-item">
+                    <div class="platform-icon">🐧</div>
+                    <h3>Linux</h3>
+                </div>
+                <div class="platform-item">
+                    <div class="platform-icon">🍎</div>
+                    <h3>MacOS</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="roadmap">
+        <div class="container">
+            <h2 class="section-title">Development Roadmap</h2>
+            <div class="roadmap-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Phase 1: Core Development</h3>
+                        <p>Completion of the operating system kernel and basic functionality.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Phase 2: Private Beta</h3>
+                        <p>Release to a select group of testers for initial feedback and bug fixing.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Phase 3: Public Beta</h3>
+                        <p>Open access to the beta for all interested parties, with regular updates.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Phase 4: Official Release</h3>
+                        <p>Version 1.0 available for free download on all platforms.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <h3>dOS - The future is here</h3>
+                <p>Developed with ❤️ by Damiano Sensi</p>
+                <div class="social-links">
+                    <a href="contacts.html" class="social-link">💬</a>
+                    <a href="email.html" class="social-link">📧</a>
+                </div>
+                <p>&copy; 2023 dOS. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <a href="#" class="back-to-top" id="backToTop">↑</a>
+    
+    <script>
+        // Script for the "Back to top" button
+        const backToTopButton = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        // Script to animate elements when they enter the viewport
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.2
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        // Select all elements to animate
+        document.querySelectorAll('.feature-card, .platform-item, .timeline-item').forEach(item => {
+            observer.observe(item);
+        });
+        
+        // Script to create the wave effect in text
+        document.querySelectorAll('.wave-text').forEach(textElement => {
+            const text = textElement.textContent;
+            textElement.innerHTML = '';
+            
+            for (let i = 0; i < text.length; i++) {
+                const span = document.createElement('span');
+                span.textContent = text[i];
+                textElement.appendChild(span);
+            }
+        });
+    </script>
+</body>
+</html>

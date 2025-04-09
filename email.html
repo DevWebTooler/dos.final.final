@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Newsletter - dOS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4c6ef5;
+            --secondary-color: #12b886;
+            --dark-color: #212529;
+            --light-color: #f8f9fa;
+            --accent-color: #fa5252;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: var(--light-color);
+            animation: fadeIn 0.8s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            margin-bottom: 2rem;
+        }
+        
+        .back-button {
+            display: inline-block;
+            margin-top: 1rem;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .back-button:hover {
+            opacity: 0.8;
+        }
+        
+        section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.2rem;
+        }
+        
+        .newsletter-section {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .newsletter-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1484807352052-23338990c6c6?q=80&w=1920') center/cover no-repeat;
+            opacity: 0.05;
+            z-index: -1;
+        }
+        
+        .newsletter-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            animation: slideUp 1s ease;
+        }
+        
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        input:focus, select:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(76, 110, 245, 0.1);
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        
+        .checkbox-group input {
+            width: auto;
+            margin-top: 5px;
+        }
+        
+        .submit-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .submit-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 10px rgba(0,0,0,0.15);
+        }
+        
+        .reasons-section {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 5rem 0;
+        }
+        
+        .reasons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .reason-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .reason-card:hover {
+            transform: translateY(-5px);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .reason-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+        
+        .newsletter-preview {
+            padding: 5rem 0;
+        }
+        
+        .preview-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .newsletter-example {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        
+        .newsletter-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .newsletter-content {
+            padding: 2rem;
+        }
+        
+        .newsletter-section {
+            margin-bottom: 2rem;
+        }
+        
+        .newsletter-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .newsletter-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-icon {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+        }
+        
+        .footer-content {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .social-link {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .social-link:hover {
+            color: var(--primary-color);
+        }
+        
+        @media (max-width: 768px) {
+            .newsletter-form {
+                padding: 2rem;
+            }
+            
+            .reasons-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="logo">dOS</h1>
+            <p class="tagline">Subscribe to our newsletter and stay updated on dOS</p>
+            <a href="index.html" class="back-button">← Back to home</a>
+        </div>
+    </header>
+    
+    <section class="newsletter-section">
+        <div class="container">
+            <h2 class="section-title">dOS Newsletter</h2>
+            
+            <form class="newsletter-form">
+                <p style="margin-bottom: 1.5rem; text-align: center;">Receive exclusive updates, news, and tips directly in your inbox.</p>
+                
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required placeholder="betanewsletterdos@gmail.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="interests">You're particularly interested in...</label>
+                    <select id="interests" name="interests">
+                        <option value="all">All the news about dOS</option>
+                        <option value="beta">Beta Program and updates</option>
+                        <option value="development">Development and technical features</option>
+                        <option value="design">Design and user interface</option>
+                        <option value="tips">Tips and guides</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="beta_notifications" name="beta_notifications">
+                        <label for="beta_notifications">I want to receive notifications when the beta is available</label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="privacy" name="privacy" required>
+                        <label for="privacy">I have read and accept the <a href="#" style="color: var(--primary-color);">Privacy Policy</a> and consent to the processing of my data</label>
+                    </div>
+                </div>
+                
+                <div class="form-group" style="text-align: center;">
+                    <button type="submit" class="submit-button">Subscribe to Newsletter</button>
+                </div>
+            </form>
+        </div>
+    </section>
+    
+    <section class="reasons-section">
+        <div class="container">
+            <h2 class="section-title">Why subscribe</h2>
+            
+            <div class="reasons-grid">
+                <div class="reason-card">
+                    <div class="reason-icon">🚀</div>
+                    <h3>Early Access</h3>
+                    <p>Newsletter subscribers will be the first to know about launch dates and important updates.</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-icon">🎁</div>
+                    <h3>Exclusive Content</h3>
+                    <p>Receive exclusive content, tutorials, and insights not available on the public website.</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-icon">💡</div>
+                    <h3>Tips and Tricks</h3>
+                    <p>Discover how to get the most out of dOS with tips and tricks from the developers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="newsletter-preview">
+        <div class="container">
+            <h2 class="section-title">Newsletter Preview</h2>
+            
+            <div class="preview-container">
+                <div class="newsletter-example">
+                    <div class="newsletter-header">
+                        <h3 style="font-size: 1.8rem; margin-bottom: 0.5rem;">dOS Newsletter</h3>
+                        <p>Edition #42 - May 2023</p>
+                    </div>
+                    
+                    <div class="newsletter-content">
+                        <div class="newsletter-section">
+                            <h4 class="newsletter-title">🎉 News of the Month</h4>
+                            <div class="newsletter-feature">
+                                <div class="feature-icon">✨</div>
+                                <div>
+                                    <h5>New Desktop Interface</h5>
+                                    <p>We've completely redesigned the desktop interface for better usability and performance.</p>
+                                </div>
+                            </div>
+                            <div class="newsletter-feature">
+                                <div class="feature-icon">🔥</div>
+                                <div>
+                                    <h5>Memory Optimization</h5>
+                                    <p>Memory consumption has been reduced by 30% thanks to new resource management algorithms.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="newsletter-section">
+                            <h4 class="newsletter-title">💻 Tip of the Week</h4>
+                            <p>Did you know you can completely customize the toolbar? Here's how to do it in 3 simple steps...</p>
+                        </div>
+                        
+                        <div class="newsletter-section">
+                            <h4 class="newsletter-title">🗓️ Upcoming Events</h4>
+                            <p>Don't miss the "The Future of dOS" webinar on May 15th at 6:00 PM. Register now to reserve your spot!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <h3>dOS - The future is here</h3>
+                <p>Developed with ❤️ by Damiano Sensi</p>
+                <div class="social-links">
+                    <a href="contacts.html" class="social-link">💬</a>
+                    <a href="email.html" class="social-link">📧</a>
+                </div>
+                <p>&copy; 2023 dOS. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 
